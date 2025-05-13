@@ -6,7 +6,10 @@
 {% else %}
 {%- assign items = site.data[site.metadata] | where_exp: 'item','item.objectid' | where_exp: 'item','item.parentid == nil' -%}
 {% endif %}
-{%- assign items = site.data[site.metadata] | where_exp: 'item','item.DISCIPLINE contains "Art Museums"' -%}{%- assign fields = site.data.config-map -%}
+{%- assign items = items | where_exp: 'item', 'item.objectid != nil' | where_exp: 'item','item.latitude' -%}
+<!-- {%- assign items = site.data[site.metadata] | where_exp: 'item','item.DISCIPLINE contains "Art Museums"' -%}
+ -->
+ {%- assign fields = site.data.config-map -%}
 <!-- load leaflet dependencies -->
 <script src="{{ '/assets/lib/leaflet/leaflet.js' | relative_url }}"></script>
 <script src="{{ '/assets/lib/leaflet/Leaflet.fullscreen.min.js' | relative_url }}"></script>
